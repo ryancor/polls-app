@@ -2,8 +2,10 @@ class SearchController < ApplicationController
 	def search
 		if params[:query].nil?
   			@polls = []
+  			@vote_options = []
     	else
   			@polls = Poll.search(params[:query]).order(created_at: :desc)
+  			@vote_options = VoteOption.search(params[:query]).order(created_at: :desc)
 			if current_user && params[:query]
 				SearchDatum.create(value: params[:query], user_id: current_user.id)
 			else

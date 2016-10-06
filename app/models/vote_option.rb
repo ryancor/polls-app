@@ -7,4 +7,7 @@ class VoteOption < ApplicationRecord
   	has_many :votes, dependent: :destroy
 	has_many :users, through: :votes
 
+	def self.search(query)
+		where("title LIKE ?", "%#{query}%")
+	end
 end

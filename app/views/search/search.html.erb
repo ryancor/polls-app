@@ -3,7 +3,7 @@
 <%= form_for search_path, method: :get do |f| %>
   <p>
     <%= f.label "Search for" %>
-    <%= text_field_tag :query, params[:query], placeholder: 'topics...' %>
+    <%= text_field_tag :query, params[:query], placeholder: 'topics or titles...' %>
     <%= submit_tag "Go", topic: nil %>
   </p>
 <% end %>
@@ -11,7 +11,7 @@
 <% if (@polls) %>
   <% if params[:query].blank? && !params[:query].nil? %>
       <p>Please use text to search.</p>
-  <% elsif @polls.blank? && !params[:query].nil? %>
+  <% elsif @polls.blank? && @vote_options.blank? && !params[:query].nil? %>
     <p>No topics were found! Try another search.</p>
   <% else %>
     <ul>
@@ -23,6 +23,26 @@
             <br />
           </h3>
           <p>Posted: <%= poll.posted_at %></p>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+<% else %>
+  <p>Use the search form to search for topics.</p>
+<% end %>
+
+<% if (@vote_options) %>
+  <% if params[:query].blank? && !params[:query].nil? %>
+      <p></p>
+  <% else %>
+    <ul>
+      <% @vote_options.each do |vote| %>
+        <li>
+          <h3>
+            Options: <a><%= link_to vote.title, poll_path(vote.poll) %></a>
+            <br />
+          </h3>
+          <p><%= link_to 'Vote this option!', poll_path(vote.poll), class: 'btn btn-success btn-xs block' %></p>
         </li>
       <% end %>
     </ul>
