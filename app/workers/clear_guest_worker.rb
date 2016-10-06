@@ -1,4 +1,4 @@
-class ClearGuesttWorker
+class ClearGuestWorker
 	include Sidekiq::Worker
 
 	if !Rails.env.production?
