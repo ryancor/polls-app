@@ -79,4 +79,8 @@ class Poll < ApplicationRecord
 	def normalized_votes_for(option)
 		votes_summary == 0 ? 0 : (option.votes.count.to_f / votes_summary) * 100
 	end
+
+	def created_by
+		user.name
+	end
 end
