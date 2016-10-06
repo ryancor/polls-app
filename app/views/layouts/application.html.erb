@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Poller</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+<body>
+	<div class="navbar navbar-inverse">
+	  	<div class="container">
+	    	<div class="navbar-header">
+	    		<ul class="nav navbar-nav">
+	    		<li><p style="color:yellow;margin-right:20px;margin-top: 12px;font-size:18px;">RadPad:</p></li>
+	    		</ul>
+	      		<%= link_to 'Polls', root_path, class: 'navbar-brand' %>
+	    	</div>
+	    	<ul class="nav navbar-nav">
+	      		<li><%= link_to 'Add a Poll', new_poll_path %></li>
+	    	</ul>
+	    	<ul class = "nav navbar-nav navbar-right">
+	    	  <% if current_user %>
+	    	  	<% if current_user.has_photo? %>
+	    			<li><%= image_tag current_user.image_url, alt: current_user.name %></li>
+	    		<% else %>
+	    			<li><%= image_tag 'assets/images/default-avatar.png', alt: 'Default'%></li>
+	    		<% end %>
+	    		<li><%= link_to 'My Profile', user_path(current_user) %></li>
+	    		<li><%= link_to 'Logout', sign_out_path %></li>
+	    	  <% else %>
+	    	  <li><%= link_to 'Sign in', '/auth/facebook' %></li>
+	    	  <% end %>
+	    	</ul>
+	  	</div>
+	</div>
+
+	<div class="container">
+	  <% flash.each do |key, value| %>
+	    <div class="alert alert-<%= key %>">
+	      <%= value %>
+	    </div>
+	  <% end %>
+
+	  <div class="page-header">
+	    <h1><%= yield :page_header %></h1>
+	  </div>
+
+	  <%= yield %>
+	</div>
+</body>
+</html>

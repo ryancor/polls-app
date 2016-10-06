@@ -1,0 +1,22 @@
+<% content_for(:page_header) do %>
+	<%= image_tag @user.image_url, alt: @user.name %>
+	<% if current_user %>
+		<%= "My Profile"%>
+		<p style="font-size:14px;margin-top:10px;">I voted <%= @user.how_many_votes %> times.</p>
+	<% else %>
+		<%= "#{@user.name}'s Profile"%>
+		<p style="font-size:14px;margin-top:10px;">Voted <%= @user.how_many_votes %> times.</p>
+	<% end %>
+<% end %>
+
+<% @user.vote_options.order(created_at: :desc).each do |option| %>
+  <div class="panel panel-default">
+    <div class="panel-heading"><%= link_to option.poll.topic, poll_path(option.poll) %></div>
+    <div class="panel-body">
+      Voted for <b><%= option.title %></b>
+      <% option.votes.each do |vote| %>
+      	<%= vote.voted_when? %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
