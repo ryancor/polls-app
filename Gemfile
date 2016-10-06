@@ -17,6 +17,7 @@ gem 'omniauth-facebook'
 gem 'elasticsearch-model'
 gem 'elasticsearch-rails'
 gem 'counter_culture', '~> 0.1.23'
+gem 'sidekiq'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
