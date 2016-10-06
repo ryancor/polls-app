@@ -10,7 +10,13 @@ class ClearGuestWorker
 	end
 
 	def perform
-		# add worker to clear nil guest users
-		puts 'Hello'
+		search = SearchDatum.where(:user_id => nil).last(5)
+		search.each do |x|
+			5.times do
+  				x.delete
+  				x.save
+  			end
+		end
+		return '5 records of nil searches have been deleted..'
 	end
 end
