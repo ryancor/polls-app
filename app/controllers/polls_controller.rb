@@ -12,7 +12,7 @@ class PollsController < ApplicationController
 	end
 
 	def create
-		@poll = Poll.create(poll_params)
+		@poll = Poll.create(poll_params.merge(user: current_user))
 		if @poll.save
 			flash[:success] = 'Poll was created!'
 			redirect_to polls_path

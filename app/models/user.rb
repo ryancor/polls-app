@@ -5,6 +5,7 @@ class User < ApplicationRecord
   has_many :votes, dependent: :destroy
   has_many :vote_options, through: :votes
   has_many :search_datum, dependent: :destroy
+  has_many :polls, dependent: :destroy
 
   scope :who_voted, -> { joins(:votes).where("vote_option_id IS NOT NULL")
                           .map(&:name).uniq }

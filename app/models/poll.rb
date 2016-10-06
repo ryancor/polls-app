@@ -7,6 +7,8 @@ class Poll < ApplicationRecord
 
 	has_many :vote_options, dependent: :destroy
 	has_many :votes, through: :vote_options
+	belongs_to :user
+	# validates :user, presence: true
 	validates :topic, presence: true
 
 	accepts_nested_attributes_for :vote_options, :reject_if => :all_blank, :allow_destroy => true
