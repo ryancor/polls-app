@@ -9,7 +9,8 @@ class ClearGuestWorker
 		end
 	end
 
-	def perform(msg)
+	def perform
 		# add worker to clear nil guest users
+		puts 'Hello'
 	end
 end
