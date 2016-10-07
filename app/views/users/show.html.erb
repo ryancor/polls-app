@@ -3,6 +3,11 @@
 	<% if current_user %>
 		<%= "My Profile"%>
 		<p style="font-size:14px;margin-top:10px;">I voted <%= @user.how_many_votes %> times and created <%= @user.polls.count %> polls.</p>
+    <% if @user.about_me.nil? %>
+      <p style="font-size:14px;margin-top:10px;"><%= link_to 'Add Bio', edit_user_path(current_user) %></p>
+    <% else %>
+      <p style="font-size:14px;margin-top:10px;"><%= @user.about_me %><%= link_to 'Edit Bio', edit_user_path(current_user) %></p>
+    <% end %>
 	<% else %>
 		<%= "#{@user.name}'s Profile"%>
 		<p style="font-size:14px;margin-top:10px;">Voted <%= @user.how_many_votes %> times and created <%= @user.polls.count %> polls.</p>

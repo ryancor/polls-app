@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161006225527) do
+ActiveRecord::Schema.define(version: 20161007205119) do
+
+  create_table "about_mes", force: :cascade do |t|
+    t.string   "bio"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_about_mes_on_user_id"
+  end
 
   create_table "polls", force: :cascade do |t|
     t.text     "topic"
