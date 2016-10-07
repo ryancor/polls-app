@@ -2,7 +2,7 @@
 	<%= image_tag @user.image_url, alt: @user.name %>
 	<% if current_user %>
 		<%= "My Profile"%>
-		<p style="font-size:14px;margin-top:10px;">I voted <%= @user.how_many_votes %> times.</p>
+		<p style="font-size:14px;margin-top:10px;">I voted <%= @user.how_many_votes %> times and created <%= @user.polls.count %> polls.</p>
 	<% else %>
 		<%= "#{@user.name}'s Profile"%>
 		<p style="font-size:14px;margin-top:10px;">Voted <%= @user.how_many_votes %> times.</p>
