@@ -5,7 +5,8 @@
 
 <div class="form-group">
 	<%= label_tag :bio %>
-	<%= text_area_tag(:bio, {placeholder: '150 words or less..', class: 'form-control'}, size: "50x1") %>
+	<%= text_area_tag :bio, '', autocomplete: "off", class: "form-control", placeholder: "Use 150 words or less..." %>
+
 </div>
 
  <%= submit_tag 'Create', class: 'btn btn-primary btn-lg' %>

@@ -6,4 +6,12 @@ module DateMethods
 		return "less than a day ago" unless day >= 1
 		return "#{day} day(s) ago."
 	end
+
+	def updated_when
+		t = Time.current
+		days_old = (t) - (updated_at)
+		day = (days_old/86400).to_i
+		return "less than a day ago" unless day >= 1
+		return "#{day} day(s) ago."
+	end
 end
