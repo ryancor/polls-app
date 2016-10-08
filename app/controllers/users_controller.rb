@@ -12,6 +12,8 @@ class UsersController < ApplicationController
 		@user = User.includes(:vote_options, :about_me).find_by_id(params[:id])
 		@about = @user.about_me || @user.create_about_me
 		@about.update_attributes(bio: params[:bio])
+		@about.update_count += 1 
+		@about.save
 		redirect_to user_path(current_user)
 	end
 end

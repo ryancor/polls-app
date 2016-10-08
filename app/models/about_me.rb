@@ -11,4 +11,8 @@ class AboutMe < ApplicationRecord
   def last_updated
   	updated_at.strftime("%m/%d/%Y")
   end
+
+  def update_counter
+  	update_count + 1
+  end
 end

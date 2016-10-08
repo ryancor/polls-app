@@ -5,7 +5,11 @@
 
 <div class="form-group">
 	<%= label_tag :bio %>
+	<% if @about.bio.nil? || @about.bio.blank? %>
 	<%= text_area_tag :bio, '', autocomplete: "off", class: "form-control", placeholder: "Use 150 words or less..." %>
+	<% else %>
+	<%= text_area_tag :bio, @about.bio, autocomplete: "off", class: "form-control" %>
+	<% end %>
 
 </div>
 
