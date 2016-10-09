@@ -23,6 +23,7 @@ class PollsController < ApplicationController
 
 	def edit
 		@poll = Poll.find_by_id(params[:id])
+		# make a way where only primary user can edit
 	end
 
 	def update

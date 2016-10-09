@@ -1,0 +1,34 @@
+<% if current_user.polls.present? %>
+  <% content_for(:page_header) {"Manage your #{current_user.polls.count} Polls."} %>
+  <% current_user.polls.order(created_at: :desc).try(:each) do |poll| %>
+    <div class="well">
+      <h2><%= poll.topic %></h2><h5>Total Votes: <%= poll.total_votes %></h5>
+      <p>Posted: <%= poll.posted_at %></p>
+      <% if poll.user %>
+        <p>By: <%=link_to poll.created_by, user_path(poll.user) %></p>
+      <% end %>
+      <% unless poll.vote_options.empty? %>
+        <%= poll.total_choices %> Choices:
+        <% poll.vote_options.each do |vote| %>
+            <% if current_user %>
+              <a>| <%= link_to vote.title, poll_path(poll) %> |</a>
+            <% else %>
+              <a>| <%= link_to vote.title, '/auth/facebook' %> |</a>
+            <% end %>
+        <% end %>
+      <% end %>
+      <br /><br />
+
+      <p>
+  	   <div class="btn-group">
+  	   <%= link_to 'Add/Edit Choices', edit_poll_path(poll), class: 'btn-sm btn-default' %>
+  	   <%= link_to 'Delete', poll_path(poll),
+  	               method: :delete,
+  	               class: 'btn-sm btn-danger', data: {confirm: 'Are you sure?'} %>
+  	   </div>
+      </p>
+    </div>
+  <% end %>
+<% else %>
+  <% content_for(:page_header) {"Start making some polls!!"} %>
+<% end %>

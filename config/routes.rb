@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 	get '/users/:id', to: 'users#show', as: 'user'
 	get '/users/:id/edit', to: 'users#edit', as: 'edit_user'
 	post '/users/:id', to: 'users#update'
+	get '/users/:id/manage', to: 'users#manage', as: 'manage_user'
 	
 	# Facebook login
 	get '/auth/:provider/callback', to: 'sessions#create'

@@ -10,7 +10,7 @@
     <% if current_user.voted_for?(@poll) && @poll.votes.count == 1 %>
     	<p>Users who also voted: You're the first!</p>
     <% else %>
-    	<p>Users who also voted: <%= @poll.votes.joins(:user).where('users.id != ?', current_user.id).map(&:user).map(&:name).join(" ") %></p>
+    	<p>Users who also voted: <%= @poll.votes.joins(:user).where('users.id != ?', current_user.id).map(&:user).map(&:name).join(", ") %></p>
     <% end %>
   <% else %>
     <%= submit_tag 'Vote', class: 'btn btn-lg btn-primary' %>
