@@ -6,6 +6,13 @@ class UsersController < ApplicationController
 	def edit
 		@user = User.includes(:vote_options, :about_me).find_by_id(params[:id])
 		@about = @user.about_me || @user.build_about_me
+		if @user != current_user
+			if current_user
+				redirect_to user_path(current_user)
+			else
+				redirect_to polls_path
+			end
+		end
 	end
 
 	def update

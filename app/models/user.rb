@@ -49,6 +49,10 @@ class User < ApplicationRecord
     name.split(' ',2)[1]
   end
 
+  def searched
+    search_datum.map(&:value)
+  end
+
   class << self
   	def from_omniauth(auth)
   	    uid = auth.uid
