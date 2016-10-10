@@ -13,7 +13,7 @@
 	<% else %>
 		<%= "#{@user.name}'s Profile"%>
 		<p style="font-size:14px;margin-top:10px;">Voted <%= @user.how_many_votes %> times and created <%= @user.polls.count %> polls.</p>
-    <p style="font-size:14px;margin-top:10px;">About <%= @user.first_name %>: <i><%= @user.about_me.bio %></i></p>
+    <p style="font-size:14px;margin-top:10px;">About <%= @user.first_name %>: <i><%= @user.about_me.try(:bio) %></i></p>
 	<% end %>
 <% end %>
 
@@ -22,9 +22,7 @@
     <div class="panel-heading"><%= link_to option.poll.topic, poll_path(option.poll) %></div>
     <div class="panel-body">
       Voted for <b><%= option.title %></b>
-      <% option.votes.each do |vote| %>
-      	<%= vote.voted_when? %>
-      <% end %>
+      <%= option.votes.last.voted_when? %>
     </div>
   </div>
 <% end %>

@@ -2,6 +2,9 @@ class User < ApplicationRecord
 
   include DateMethods
 
+  before_validation :make_slug, on: :create
+  validates_presence_of :slug
+
   has_many :votes, dependent: :destroy
   has_many :vote_options, through: :votes
   has_many :search_datum, dependent: :destroy
@@ -51,6 +54,16 @@ class User < ApplicationRecord
 
   def searched
     search_datum.map(&:value)
+  end
+
+  def make_slug
+    a = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
+    string = (0..10).map { a[rand(a.length)] }.join
+    self.slug = [string, self.name.downcase.gsub(' ','-')].join("-")
+  end
+
+  def to_params
+    slug
   end
 
   class << self
