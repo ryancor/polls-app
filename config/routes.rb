@@ -7,10 +7,10 @@ Rails.application.routes.draw do
 	# Search params
 	get 'search', to: 'search#search'
 
-	get '/users/:id', to: 'users#show', as: 'user'
-	get '/users/:id/edit', to: 'users#edit', as: 'edit_user'
-	post '/users/:id', to: 'users#update'
-	get '/users/:id/manage', to: 'users#manage', as: 'manage_user'
+	get '/users/:slug', to: 'users#show', as: 'user'
+	get '/users/:slug/edit', to: 'users#edit', as: 'edit_user'
+	post '/users/:slug', to: 'users#update'
+	get '/users/:slug/manage', to: 'users#manage', as: 'manage_user'
 	
 	# Facebook login
 	get '/auth/:provider/callback', to: 'sessions#create'

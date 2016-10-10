@@ -62,7 +62,7 @@ class User < ApplicationRecord
     self.slug = [string, self.name.downcase.gsub(' ','-')].join("-")
   end
 
-  def to_params
+  def to_param
     slug
   end
 
