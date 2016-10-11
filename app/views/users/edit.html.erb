@@ -25,10 +25,10 @@
 	<%= label_tag :Public_Profile %>
 	<br />
 	<%= label_tag :yes %>
-	<%= radio_button_tag :is_public, true, !!(@user.is_public == true) %>
+	<%= radio_button_tag :is_public, true, !!(@user.is_public?) %>
 	<br />
 	<%= label_tag :no %>
-	<%= radio_button_tag :is_public, false, !!(@user.is_public == false) %>
+	<%= radio_button_tag :is_public, false, !!(@user.is_private?) %>
 </div>
 
  <%= submit_tag 'Create', class: 'btn btn-primary btn-lg' %>

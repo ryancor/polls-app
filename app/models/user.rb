@@ -61,15 +61,15 @@ class User < ApplicationRecord
   end
 
   def is_private?
-    if is_public == true
-      return false
+    if is_public
+      false
     else
-      return true
+      true
     end
   end
 
   def is_private
-    is_public == true ? (false) : (true)
+    is_public == false ? (true) : (false)
   end
 
   def make_slug
