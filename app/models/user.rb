@@ -60,6 +60,18 @@ class User < ApplicationRecord
     about_me.age
   end
 
+  def is_private?
+    if is_public == true
+      return false
+    else
+      return true
+    end
+  end
+
+  def is_private
+    is_public == true ? (false) : (true)
+  end
+
   def make_slug
     a = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
     string = (0..10).map { a[rand(a.length)] }.join

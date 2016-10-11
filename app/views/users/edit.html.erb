@@ -21,5 +21,16 @@
 	<% end %>
 </div>
 
+<div class="form-group">
+	<%= label_tag :Public_Profile %>
+	<br />
+	<%= label_tag :yes %>
+	<%= radio_button_tag :is_public, true, !!(@user.is_public == true) %>
+	<br />
+	<%= label_tag :no %>
+	<%= radio_button_tag :is_public, false, !!(@user.is_public == false) %>
+</div>
+
  <%= submit_tag 'Create', class: 'btn btn-primary btn-lg' %>
+
 
