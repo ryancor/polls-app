@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 	def update
 		@user = User.includes(:vote_options, :about_me).find_by_slug(params[:slug])
 		@about = @user.about_me || @user.create_about_me
-		@about.update_attributes(bio: params[:bio])
+		@about.update_attributes(bio: params[:bio], age: params[:age])
 		@about.update_count += 1 
 		@about.save
 		redirect_to user_path(current_user)

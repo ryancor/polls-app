@@ -56,6 +56,10 @@ class User < ApplicationRecord
     search_datum.map(&:value)
   end
 
+  def age
+    about_me.age
+  end
+
   def make_slug
     a = [('a'..'z'), ('A'..'Z')].map { |i| i.to_a }.flatten
     string = (0..10).map { a[rand(a.length)] }.join
@@ -71,6 +75,7 @@ class User < ApplicationRecord
   	    uid = auth.uid
   	    info = auth.info.symbolize_keys!
   	    user = User.find_or_initialize_by(uid: uid)
+        user.email = info.email
   	    user.name = info.name
   	    user.image_url = info.image
   	    user.save!

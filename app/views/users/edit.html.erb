@@ -10,7 +10,15 @@
 	<% else %>
 	<%= text_area_tag :bio, @about.bio, autocomplete: "off", class: "form-control" %>
 	<% end %>
+</div>
 
+<div class="form-group">
+	<%= label_tag :age %>
+	<% if @about.age.nil? || @about.age.blank? %>
+	<%= text_area_tag :age, '', autocomplete: "off", class: "form-control", placeholder: "Optional", size: '1x1' %>
+	<% else %>
+	<%= text_area_tag :age, @about.age, autocomplete: "off", class: "form-control" %>
+	<% end %>
 </div>
 
  <%= submit_tag 'Create', class: 'btn btn-primary btn-lg' %>
