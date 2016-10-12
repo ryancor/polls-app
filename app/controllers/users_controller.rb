@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 	def show
-		@user = User.includes(:vote_options, :about_me).find_by_slug(params[:slug])
+		@user = User.includes(:vote_options, :about_me).find_by_slug(params[:slug]) || 
+		@user = !params[:slug].nil? ? User.includes(:vote_options, :about_me).find(params[:slug]) : current_user
 	end
 
 	def edit

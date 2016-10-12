@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 	# Search params
 	get 'search', to: 'search#search'
 
+	match '/profile', to: 'users#show', via: [:get]
 	get '/users/:slug', to: 'users#show', as: 'user'
 	get '/users/:slug/edit', to: 'users#edit', as: 'edit_user'
 	post '/users/:slug', to: 'users#update'
