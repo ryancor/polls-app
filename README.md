@@ -5,20 +5,6 @@ application up and running.
 
 Things you may want to cover:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* `bundle install` (for missing gems)
+* possible `rake db:migrate` if you aren't up to date with the new DB
+* `rails s -p 9200` (Using ElasticSearch)
