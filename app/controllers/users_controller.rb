@@ -31,9 +31,8 @@ class UsersController < ApplicationController
 		@user = User.includes(:vote_options, :about_me).find_by_slug(params[:slug])
 		@about = @user.about_me || @user.create_about_me
 		if AboutMe.check_bad_words.index{ |x| params[:bio].include?(x) }.present?
-			new_word = params[:bio].split.delete_if { |x| 
-				AboutMe.check_bad_words.include?(x) }.join(' ')
-			@about.update_attributes(bio: params[:new_word], age: params[:age])
+			new_sentence = params[:bio].split.delete_if { |x| AboutMe.check_bad_words.include?(x) }.join(' ')
+			@about.update_attributes(bio: new_sentence, age: params[:age])
 			flash[:warning] = "Can't use profanity in your bio. Please try again."
 		elsif AboutMe.check_bad_words.index{ |x| params[:bio].include?(x) }.nil?
 			@about.update_attributes(bio: params[:bio], age: params[:age])
