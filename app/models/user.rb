@@ -68,6 +68,14 @@ class User < ApplicationRecord
     end
   end
 
+  def admin?
+    if admin
+      true
+    else
+      false
+    end
+  end
+
   def is_private
     is_public == false ? (true) : (false)
   end

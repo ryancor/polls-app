@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161011181247) do
+ActiveRecord::Schema.define(version: 20161106180518) do
 
   create_table "about_mes", force: :cascade do |t|
     t.string   "bio"
@@ -20,6 +20,21 @@ ActiveRecord::Schema.define(version: 20161011181247) do
     t.integer  "update_count", default: 0
     t.integer  "age"
     t.index ["user_id"], name: "index_about_mes_on_user_id"
+  end
+
+  create_table "admins", force: :cascade do |t|
+    t.string   "email",              default: "", null: false
+    t.string   "encrypted_password", default: "", null: false
+    t.integer  "sign_in_count",      default: 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.integer  "failed_attempts",    default: 0
+    t.string   "unlock_token"
+    t.datetime "locked_at"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
   end
 
   create_table "polls", force: :cascade do |t|
@@ -41,11 +56,12 @@ ActiveRecord::Schema.define(version: 20161011181247) do
     t.string   "name"
     t.string   "image_url"
     t.string   "uid"
-    t.datetime "created_at",                null: false
-    t.datetime "updated_at",                null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "slug"
     t.string   "email"
     t.boolean  "is_public",  default: true
+    t.boolean  "admin",      default: false
     t.index ["slug"], name: "index_users_on_slug"
     t.index ["uid"], name: "index_users_on_uid"
   end

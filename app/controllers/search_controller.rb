@@ -4,6 +4,7 @@ class SearchController < ApplicationController
   			@polls = []
   			@vote_options = []
     	else
+    		@searches = SearchDatum.common_searches?
   			@polls = Poll.search(params[:query]).order(created_at: :desc)
   			@vote_options = VoteOption.search(params[:query]).order(created_at: :desc)
 			if current_user && params[:query]

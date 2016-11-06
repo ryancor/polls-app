@@ -1,3 +1,7 @@
+<p>Most Common Searches:
+<% @searches.try(:each) do |search| %>
+  <%= search %>
+<% end %></p>
 <h1>Poll Search</h1>
 
 <%= form_for search_path, method: :get do |f| %>

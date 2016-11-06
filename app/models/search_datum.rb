@@ -9,4 +9,10 @@ class SearchDatum < ApplicationRecord
   def self.many_guests?
   	all.map(&:user).reject(&:present?).count
   end
+
+  def self.common_searches?
+  	word = SearchDatum.all.map(&:value)
+  	result = word.each_with_object(Hash.new(0)) { |word,counts| counts[word] += 1 }
+  	result.max_by(3, &:last)
+  end
 end

@@ -22,8 +22,18 @@
     <br /><br />
 
     <p>
-      <% if current_user %>
+      <% if current_user && !current_user.admin? %>
         <%= link_to 'Participate!', poll_path(poll), class: 'btn btn-primary btn-md block' %>
+      <% elsif current_user && current_user.admin? %>
+        <p>
+          <div class="btn-group">
+          <p><%= link_to 'Participate!', poll_path(poll), class: 'btn btn-primary btn-md block' %></p>
+          <%= link_to 'Add/Edit Choices', edit_poll_path(poll), class: 'btn-sm btn-default' %>
+          <%= link_to 'Delete', poll_path(poll),
+                   method: :delete,
+                   class: 'btn-sm btn-danger', data: {confirm: 'Are you sure?'} %>
+         </div>
+        </p>
       <% else %>
         Please sign in via <%= link_to 'Facebook', '/auth/facebook' %> to participate in this poll.
       <% end %>
