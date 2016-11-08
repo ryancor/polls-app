@@ -15,4 +15,13 @@ class SearchDatum < ApplicationRecord
   	result = word.each_with_object(Hash.new(0)) { |word,counts| counts[word] += 1 }
   	result.max_by(3, &:last)
   end
+
+  def self.search_exists(value)
+  	s = SearchDatum.all.map(&:value)
+  	if s.include?(value)
+  		true
+  	else
+  		false
+  	end
+  end
 end
