@@ -1,7 +1,7 @@
 <% content_for(:page_header) do %>
 	<%= image_tag @user.image_url, alt: @user.name %>
 	<% if @user == current_user %>
-		<%= "My Profile"%>
+		<%= "My Profile" %> | <%= link_to 'Messages', conversations_path(current_user) %>
 		<p style="font-size:14px;margin-top:10px;">I voted <%= @user.how_many_votes %> times and created <%= @user.polls.count %> polls.</p>
     <% if @user.about_me.nil? || !@user.about_me.present? %>
       <p style="font-size:14px;margin-top:10px;"><%= link_to 'Add Bio', edit_user_path(current_user) %></p>

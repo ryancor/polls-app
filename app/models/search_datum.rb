@@ -18,10 +18,6 @@ class SearchDatum < ApplicationRecord
 
   def self.search_exists(value)
   	s = SearchDatum.all.map(&:value)
-  	if s.include?(value)
-  		true
-  	else
-  		false
-  	end
+  	s.include?(value) == true ? (true) : (false)
   end
 end

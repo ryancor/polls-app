@@ -2,8 +2,14 @@ Rails.application.routes.draw do
   devise_for :admins
 	resources :polls
 	resources :votes, only: [:create]
+	resources :conversations do
+  		resources :messages
+ 	end
 
 	root to: 'polls#index'
+
+	# Messages
+	get 'conversations', to: 'conversations#index'
 
 	# Search params
 	get 'search', to: 'search#search'
