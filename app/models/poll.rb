@@ -72,6 +72,11 @@ class Poll < ApplicationRecord
 		where("topic LIKE ?", "%#{query}%")
 	end
 
+	def self.find_option(name)
+		f = last.vote_options.map(&:title)
+		f.include?(name)
+	end
+
 	def votes_summary
 		vote_options.inject(0) {|summary, option| summary + option.votes.count}
 	end

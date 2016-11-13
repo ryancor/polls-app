@@ -21,12 +21,12 @@ gem 'sidekiq'
 gem 'sidetiq', '~> 0.7.2'
 gem 'devise', '~> 4.2'
 gem 'factory_girl'
-gem "factory_girl_rails", "~> 4.0"
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'rspec-rails', '~> 3.5'
+  gem "factory_girl_rails", "~> 4.0"
 end
 
 group :development do

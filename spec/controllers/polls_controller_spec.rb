@@ -1,5 +1,5 @@
 require 'rails_helper'
-require 'support/factory_girl'
+require 'spec_helper'
 
 RSpec.describe PollsController, :type => :controller do
   describe "GET index" do
@@ -11,10 +11,10 @@ RSpec.describe PollsController, :type => :controller do
 
   describe "POST create/:id & update/:id" do
   	it "creates a poll" do
-	   poll = Poll.create!(topic: 'New title')
-	   put :update, {:id => poll.to_param, :topic => 'Newer title' }
-	   poll.reload
-	   expect(poll.topic).to eq('Newer title')
+	   poll_attributes = FactoryGirl.attributes_for(:poll)
+  	   post :create, post: poll_attributes
+  	   response.should redirect_to(root_path)
+  	   Poll.last.topic.should == poll_attributes[:topic]
 	end
   end
 end
