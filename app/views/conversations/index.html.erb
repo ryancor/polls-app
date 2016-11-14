@@ -20,13 +20,13 @@
  </div>
 </div>
 <div class='ui segment'>
- <h3>All Users</h3>
+ <h3>All <%= @users.count %> Users</h3>
   <div class='ui list'>
   <% @users.each do |user| %>
     <% @conversations.each do |conversation| %>
       <% if user.id != current_user.id && conversation.recipient_id != user.id && conversation.sender_id != user.id%>
        <div class='item'>
-        <%= user.name %> <%= link_to 'Message me!', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post' %>
+        <%= user.name %> <%= link_to 'Message!', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post' %>
        </div>
       <% end %>
     <%end %>
