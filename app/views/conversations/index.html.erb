@@ -1,5 +1,9 @@
 <div class='ui segment'>
- <h3>Mailbox</h3>
+<% if @messages.last.conversation.sender_id == current_user.id || @messages.last.conversation.recipient_id == current_user.id && @messages.last.read  %>
+    <h3>Mailbox</h3>
+<% elsif @messages.last.conversation.recipient_id == current_user.id && !@messages.last.read %>
+    <h3>Mailbox (New Messages!)</h3>
+<% end %>
  <div class='ui list'>
   <div class='item'>
    <% @conversations.each do |conversation| %>
@@ -20,7 +24,7 @@
   <div class='ui list'>
   <% @users.each do |user| %>
     <% @conversations.each do |conversation| %>
-      <% if user.id != current_user.id && conversation.recipient_id != user.id %>
+      <% if user.id != current_user.id && conversation.recipient_id != user.id && conversation.sender_id != user.id%>
        <div class='item'>
         <%= user.name %> <%= link_to 'Message me!', conversations_path(sender_id: current_user.id, recipient_id: user.id), method: 'post' %>
        </div>

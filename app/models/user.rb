@@ -90,6 +90,10 @@ class User < ApplicationRecord
     slug
   end
 
+  def self.messages(id)
+    User.joins('INNER JOIN messages m ON users.id = m.id').select('*').where("users.id = #{id}")
+  end
+
   class << self
   	def from_omniauth(auth)
   	    uid = auth.uid
