@@ -9,6 +9,8 @@ class User < ApplicationRecord
   has_many :vote_options, through: :votes
   has_many :search_datum, dependent: :destroy
   has_many :polls, dependent: :destroy
+  has_many :conversations, through: :messages
+  has_many :messages, dependent: :destroy
   has_one :about_me, dependent: :destroy
 
   scope :who_voted, -> { joins(:votes).where("vote_option_id IS NOT NULL")
