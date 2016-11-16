@@ -30,11 +30,3 @@ RSpec.describe PollsController, :type => :controller do
 	  end
   end
 end
-
-RSpec.describe "All routes", :type => :routing do
-  describe "GET routes" do
-    it "re-routes successfully" do
-    	expect(get("/polls")).to route_to("polls#index")
-    end
-  end
-end
