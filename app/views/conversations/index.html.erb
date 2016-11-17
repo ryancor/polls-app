@@ -1,7 +1,7 @@
 <div class='ui segment'>
 <% if @messages.last.conversation.sender_id == current_user.id || @messages.last.conversation.recipient_id == current_user.id && @messages.last.read  %>
     <h3>Mailbox</h3>
-<% elsif @messages.last.conversation.recipient_id == current_user.id && !@messages.last.read %>
+<% elsif @messages.last.conversation.sender_id == current_user.id || @messages.last.conversation.recipient_id == current_user.id && @messages.last.user_id != current_user.id && !@messages.last.read %>
     <h3>Mailbox (New Messages!)</h3>
 <% end %>
  <div class='ui list'>
