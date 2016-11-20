@@ -29,6 +29,7 @@ group :development, :test do
   gem "factory_girl_rails", "~> 4.0"
   gem 'capybara'
   gem 'guard-rspec'
+  gem 'rails-controller-testing'
 end
 
 group :test do
