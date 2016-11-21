@@ -2,6 +2,11 @@ class User < ApplicationRecord
 
   include DateMethods
 
+  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100#" },
+    :url  => "/assets/images/users/:id/:style/:basename.:extension",
+    :path => ":rails_root/public/assets/images/users/:id/:style/:basename.:extension"
+  #validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
+
   before_validation :make_slug, on: :create
   validates_presence_of :slug
 

@@ -39,7 +39,13 @@ class UsersController < ApplicationController
 		else
 			flash[:warning] = "Can't update bio right now."
 		end
-		@user.update_attributes(is_public: params[:is_public])
+		unless params[:avatar].blank?
+			@user.update_attributes(is_public: params[:is_public], 
+				avatar_file_name: params[:avatar])
+			File.open(Rails.root.join('app/assets/images', 'users', params[:avatar]), 'wb') do |f|
+		  		f.write(params[:avatar])
+			end
+		end
 		@about.update_count += 1 
 		@about.save
 		redirect_to user_path(current_user)
