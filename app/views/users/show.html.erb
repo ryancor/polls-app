@@ -2,7 +2,7 @@
   <% if @user.avatar_file_name.nil? %>
 	 <%= image_tag @user.image_url, alt: @user.name %>
   <% else %>
-   <%= image_tag @user.avatar_file_name, alt: @user.name %>
+   <%= image_tag @user.avatar_file_name, :size => "70x70", alt: @user.name %>
   <% end %>
 	<% if @user == current_user %>
 		<%= "My Profile" %> | <%= link_to 'Messages', conversations_path(current_user) %>
