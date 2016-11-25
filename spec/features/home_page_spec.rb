@@ -1,12 +1,9 @@
 require 'rails_helper'
+require 'spec_helper'
 
 describe 'Go to products and assert' do
   before(:all) do
-    @host_url = 'http://localhost:9200/'
-    Capybara.app_host = @host_url
-    Capybara.current_driver = :selenium
-    Capybara.run_server = false
-    Capybara.ignore_hidden_elements = true
+    setup_selenium
   end
 
   before(:each) do
