@@ -31,6 +31,7 @@ group :development, :test do
   gem 'capybara'
   gem 'guard-rspec'
   gem 'rails-controller-testing'
+  gem 'selenium-webdriver'
 end
 
 group :test do

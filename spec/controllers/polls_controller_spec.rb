@@ -1,11 +1,17 @@
 require 'rails_helper'
 require 'spec_helper'
+require 'benchmark'
 
 RSpec.describe PollsController, :type => :controller do
   describe "GET index" do
     it "has a 200 status code" do
       get :index
       expect(response.status).to eq(200)
+    end
+    it "should load fast" do
+      Benchmark.realtime{
+        get :index
+      }.should < 0.2
     end
   end
 

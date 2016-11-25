@@ -27,4 +27,13 @@ RSpec.describe UsersController, :type => :controller do
       assigns(:user).should eq(user)
     end
   end
+
+  describe "GET current users" do
+    it "should show valid name" do
+      get('/users/qgldDzfmJNO-ryan-cornateanu')[:name].should == "Ryan Cornateanu"
+    end
+    it "should show a 404" do
+      get('/users/HAJdDzfass').code.should == 404
+    end
+  end
 end
