@@ -13,7 +13,7 @@
       <%= poll.total_choices %> Choices:
       <% poll.vote_options.each do |vote| %>
           <% if current_user %>
-            <a>| <%= link_to vote.title, poll_path(poll) %> |</a>
+            <a>| <%= link_to vote.title[0..30], poll_path(poll) %> |</a>
           <% else %>
             <a>| <%= link_to vote.title, '/auth/facebook' %> |</a>
           <% end %>

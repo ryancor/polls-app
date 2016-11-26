@@ -13,7 +13,9 @@ class SearchDatum < ApplicationRecord
   def self.common_searches?
   	word = SearchDatum.all.map(&:value)
   	result = word.each_with_object(Hash.new(0)) { |word,counts| counts[word] += 1 }
-  	result.max_by(3, &:last)
+  		.map { |k, v| [k.downcase, v] }
+  	final = result.max_by(4, &:last)
+  	final.inject({}){|x,y| x[y[0]] = y[1..-1]; x}.map(&:flatten)
   end
 
   def self.search_exists(value)
