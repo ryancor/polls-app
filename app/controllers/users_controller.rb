@@ -27,6 +27,14 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def followers
+		@user = User.find_by_slug(params[:slug])
+	end
+
+	def following
+		@user = User.find_by_slug(params[:slug])
+	end
+
 	def update
 		@user = User.includes(:vote_options, :about_me).find_by_slug(params[:slug])
 		@about = @user.about_me || @user.create_about_me

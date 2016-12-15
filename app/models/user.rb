@@ -2,9 +2,9 @@ class User < ApplicationRecord
 
   include DateMethods
 
-  has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100#" },
-    :url  => "/assets/images/users/:id/:style/:basename.:extension",
-    :path => ":rails_root/public/assets/images/users/:id/:style/:basename.:extension"
+  # has_attached_file :avatar, :styles => { :medium => "300x300>", :thumb => "100x100#" },
+  #   :url  => "/assets/images/users/:id/:style/:basename.:extension",
+  #   :path => ":rails_root/public/assets/images/users/:id/:style/:basename.:extension"
   #validates_attachment_content_type :avatar, :content_type => /\Aimage\/.*\Z/
 
   before_validation :make_slug, on: :create
@@ -15,6 +15,14 @@ class User < ApplicationRecord
   has_many :search_datum, dependent: :destroy
   has_many :polls, dependent: :destroy
   has_many :messages, dependent: :destroy
+  has_many :active_relationships, class_name:  "Relationship",
+                                  foreign_key: "follower_id",
+                                  dependent:   :destroy
+  has_many :passive_relationships, class_name:  "Relationship",
+                                   foreign_key: "followed_id",
+                                   dependent:   :destroy
+  has_many :following, through: :active_relationships, source: :followed 
+  has_many :followers, through: :passive_relationships, source: :follower
   has_one :about_me, dependent: :destroy
 
   scope :who_voted, -> { joins(:votes).where("vote_option_id IS NOT NULL")
@@ -102,6 +110,18 @@ class User < ApplicationRecord
 
   def unread
     messages.where(:read => false).map(&:read).count
+  end
+
+  def follow(other_user)
+    active_relationships.create(followed_id: other_user.id)
+  end
+
+  def unfollow(other_user)
+    active_relationships.find_by(followed_id: other_user.id).destroy
+  end
+
+  def following?(other_user)
+    following.include?(other_user)
   end
 
   class << self

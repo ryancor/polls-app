@@ -15,6 +15,17 @@
       <p style="font-size:14px;margin-top:10px;">Age: <i><%= @user.try(:age) %> years old</i></p>
       <p style="font-size:14px;margin-top:10px;">| <%= link_to 'Manage Polls', manage_user_path(current_user) %> |</p>
     <% end %>
+    <p>
+    <div class="stats" style="font-size:15px">
+      <%= link_to 'Following', following_user_path(current_user) %>
+      <strong id="following" class="stat">
+        <%= @user.following.count %>
+      </strong>
+      <%= link_to 'Followers', followers_user_path(current_user) %>
+      <strong id="followers" class="stat">
+        <%= @user.followers.count %>
+      </strong>
+  </div>
 	<% else %>
 		<%= "#{@user.name}'s Profile"%>
 		<p style="font-size:14px;margin-top:10px;">Voted <%= @user.how_many_votes %> times and created <%= @user.polls.count %> polls.</p>
@@ -22,6 +33,30 @@
     <% if @user.age && @user.is_public %>
       <p style="font-size:14px;margin-top:10px;">Age: <i><%= @user.try(:age) %> years old</i></p>
     <% end %>
+    <p>
+    <div class="stats" style="font-size:15px">
+      <%= link_to 'Following', following_user_path(@user) %>
+      <strong id="following" class="stat">
+        <%= @user.following.count %>
+      </strong>
+      <%= link_to 'Followers', followers_user_path(@user) %>
+      <strong id="followers" class="stat">
+        <%= @user.followers.count %>
+      </strong>
+  </div>
+  <div id="follow_form">
+    <% if current_user.following?(@user) %>
+      <%= form_for(current_user.active_relationships.find_by(followed_id: @user.id),
+             html: { method: :delete }) do |f| %>
+        <%= f.submit "Unfollow", class: "btn" %>
+      <% end %>
+    <% else %>
+      <%= form_for(current_user.active_relationships.build) do |f| %>
+        <div><%= hidden_field_tag :followed_id, @user.id %></div>
+        <%= f.submit "Follow", class: "btn btn-primary" %>
+      <% end %>
+    <% end %>
+  </div>
 	<% end %>
 <% end %>
 

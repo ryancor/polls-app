@@ -1,0 +1,10 @@
+<h2><u>Followers</u></h2>
+<% if @user == current_user %>
+	<% @user.followers.each do |follower| %>
+		<p><%= link_to follower.name %></p>
+	<% end %>
+<% else %>
+	<% @user.followers.each do |follower| %>
+		<p><%= link_to follower.name %></p>
+	<% end %>
+<% end %>

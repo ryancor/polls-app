@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 	resources :conversations do
   		resources :messages
  	end
+ 	resources :relationships, only: [:create, :destroy]
 
 	root to: 'polls#index'
 
@@ -19,7 +20,8 @@ Rails.application.routes.draw do
 	get '/users/:slug/edit', to: 'users#edit', as: 'edit_user'
 	post '/users/:slug', to: 'users#update'
 	get '/users/:slug/manage', to: 'users#manage', as: 'manage_user'
-	
+	get '/users/:slug/followers', to: 'users#followers', as: 'followers_user'
+	get '/users/:slug/following', to: 'users#following', as: 'following_user'
 	# Facebook login
 	get '/auth/:provider/callback', to: 'sessions#create'
 	get '/auth/failure', to: 'sessions#auth_fail'
