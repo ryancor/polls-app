@@ -45,6 +45,7 @@
       </strong>
   </div>
   <div id="follow_form">
+  <% if current_user %>
     <% if current_user.following?(@user) %>
       <%= form_for(current_user.active_relationships.find_by(followed_id: @user.id),
              html: { method: :delete }) do |f| %>
@@ -56,6 +57,7 @@
         <%= f.submit "Follow", class: "btn btn-primary" %>
       <% end %>
     <% end %>
+  <% end %>
   </div>
 	<% end %>
 <% end %>

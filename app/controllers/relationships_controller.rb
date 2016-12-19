@@ -13,7 +13,7 @@ class RelationshipsController < ApplicationController
 	def destroy
 		@relationship = Relationship.find_by_id(params[:id])
 		if @relationship.destroy
-			flash[:success] = 'Relationship was destroyed :('
+			flash[:success] = "You unfollowed #{@relationship.followed.name}"
 		else
 			flash[:warning] = 'Error destroying this relationship...'
 		end

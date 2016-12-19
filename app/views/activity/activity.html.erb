@@ -1,0 +1,13 @@
+<% if current_user %>
+	<% content_for(:page_header) {"Your Activity"} %>
+		<% @user.each do |u| %>
+			<% if current_user.following?(u) %>
+				<% u.passive_relationships.each do |p| %>
+					<p><%= p.follow_who? %> | <%= p.created_at.strftime('%m/%d/%Y') %></p>
+				<% end %>
+				<% u.active_relationships.each do |a| %>
+					<p><%= a.follow_who? %> | <%= a.created_at.strftime('%m/%d/%Y') %></p>
+				<% end %>
+			<% end %>
+		<% end %>
+<% end %>
