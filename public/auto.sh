@@ -1,6 +1,6 @@
 git status
 read -r -p 'Please enter your commit message >>> ' var
-if [ $var == 'Exit' ]; then
+if [ $var == 'Exit' ] || [ $var == 'exit' ]; then
 	exit 1
 else
 	git add .
