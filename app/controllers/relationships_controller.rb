@@ -5,7 +5,7 @@ class RelationshipsController < ApplicationController
   			flash[:success] = @relationship.follow_who?
   			redirect_to root_path
 		else
-			flash[:warning] = 'Something went wrong!'
+			flash[:warning] = 'Something went wrong!!'
 			redirect_to root_path
 		end
 	end
