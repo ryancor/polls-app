@@ -16,3 +16,13 @@
     <%= submit_tag 'Vote', class: 'btn btn-lg btn-primary' %>
   <% end %>
 <% end %>
+
+<br /><p>
+<%= form_tag controller: "comments", action: "create_comment", method: "post" %>
+
+  <div class="form-group">
+    <%= label_tag :Comment %>
+    <%= text_area_tag :body, '', autocomplete: "off", class: "form-control", placeholder: "Use 150 words or less..." %>
+  </div>
+
+<%= submit_tag 'Post', class: 'btn btn-primary btn-sm' %>

@@ -18,6 +18,9 @@ Rails.application.routes.draw do
 	# User activity
 	get 'activity', to: 'activity#activity'
 
+	# Comments
+	post 'polls/:id/create_comment', to: 'comments#create_comment'
+
 	match '/profile', to: 'users#show', via: [:get]
 	get '/users/:slug', to: 'users#show', as: 'user'
 	get '/users/:slug/edit', to: 'users#edit', as: 'edit_user'
