@@ -17,11 +17,13 @@
   <% end %>
 <% end %>
 
+
 <br /><p>
 <%= label_tag :Comments %><br />
 <% @comments.each do |comment| %>
   <% if comment.poll.id == @poll.id %>
-  <b><%= link_to comment.user.name, user_path(comment.user) %></b>: <%= comment.body %><br />
+  <% if current_user %><%= image_tag current_user.image_url, :size => "25x25",alt: current_user.name %><% end %>
+  <b><%= link_to comment.user.name, user_path(comment.user) %></b>: <%= comment.body %><br /><p>
   <% end %>
 <% end %>
 
