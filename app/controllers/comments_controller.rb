@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 			user_id: current_user.id, poll_id: params[:id])
 		if @comment.save
 			flash[:success] = "You just posted a comment"
-			redirect_to polls_path
+			redirect_to :back
 		else
 			render new
 		end

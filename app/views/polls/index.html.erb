@@ -7,7 +7,7 @@
     <h2><%= poll.topic %></h2><h5>Total Votes: <%= poll.total_votes %></h5>
     <p>Posted: <%= poll.posted_at %></p>
     <% if poll.user %>
-      <p>By: <%=link_to poll.created_by, user_path(poll.user) %></p>
+      <p>By: <%= link_to poll.created_by, user_path(poll.user) %></p>
     <% end %>
     <% unless poll.vote_options.empty? %>
       <%= poll.total_choices %> Choices:

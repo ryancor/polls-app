@@ -9,6 +9,7 @@ class PollsController < ApplicationController
 
 	def show
 		@poll = Poll.includes(:vote_options).find_by_id(params[:id])
+		@comments = Comment.all
 	end
 
 	def create

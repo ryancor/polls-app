@@ -18,10 +18,17 @@
 <% end %>
 
 <br /><p>
+<%= label_tag :Comments %><br />
+<% @comments.each do |comment| %>
+  <% if comment.poll.id == @poll.id %>
+  <b><%= link_to comment.user.name, user_path(comment.user) %></b>: <%= comment.body %><br />
+  <% end %>
+<% end %>
+
+
 <%= form_tag controller: "comments", action: "create_comment", method: "post" %>
 
   <div class="form-group">
-    <%= label_tag :Comment %>
     <%= text_area_tag :body, '', autocomplete: "off", class: "form-control", placeholder: "Use 150 words or less..." %>
   </div>
 
