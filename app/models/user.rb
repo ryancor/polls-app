@@ -14,6 +14,7 @@ class User < ApplicationRecord
   has_many :vote_options, through: :votes
   has_many :search_datum, dependent: :destroy
   has_many :polls, dependent: :destroy
+  has_many :comments, dependent: :destroy
   has_many :messages, dependent: :destroy
   has_many :active_relationships, class_name:  "Relationship",
                                   foreign_key: "follower_id",

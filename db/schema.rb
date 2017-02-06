@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161215051502) do
+ActiveRecord::Schema.define(version: 20170206002459) do
 
   create_table "about_mes", force: :cascade do |t|
     t.string   "bio"
@@ -35,6 +35,16 @@ ActiveRecord::Schema.define(version: 20161215051502) do
     t.datetime "locked_at"
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "body"
+    t.integer  "user_id"
+    t.integer  "poll_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["poll_id"], name: "index_comments_on_poll_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "conversations", force: :cascade do |t|
