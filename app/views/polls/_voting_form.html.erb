@@ -22,7 +22,7 @@
 <%= label_tag :Comments %><br />
 <% @comments.each do |comment| %>
   <% if comment.poll.id == @poll.id %>
-  <% if current_user %><%= image_tag current_user.image_url, :size => "25x25",alt: current_user.name %><% end %>
+  <%= image_tag comment.user.image_url, :size => "25x25",alt: comment.user.name %>
   <b><%= link_to comment.user.name, user_path(comment.user) %></b>: <%= comment.body %><br /><p>
   <% end %>
 <% end %>
