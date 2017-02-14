@@ -19,7 +19,7 @@
 
 
 <br /><p>
-<%= label_tag :Comments %><br />
+<%= label_tag :Comments %>(<%= @poll.comments.count %>)<br />
 <% @comments.each do |comment| %>
   <% if comment.poll.id == @poll.id %>
   <%= image_tag comment.user.image_url, :size => "25x25",alt: comment.user.name %>
